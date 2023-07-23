@@ -138,18 +138,6 @@ const Index = (props) => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <DynamicTable
-        columns={summaryColumns}
-        data={data}
-        totalCount={data?.length}
-        totalPages={0}
-      />
-      <DynamicTable
-        columns={summaryColumns}
-        data={data}
-        totalCount={data?.length}
-        totalPages={0}
-      />
     </Box>
   );
 };

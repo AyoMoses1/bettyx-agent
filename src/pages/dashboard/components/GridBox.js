@@ -8,7 +8,7 @@ const GridBox = ({ data }) => {
     useContext(CurrentPageContext);
 
   const handleClick = () => {
-    if (data.route === 'feedback' || data.route === 'add-customer') {
+    if (data.route === 'feedback') {
       setCurrentPage(data.route);
       handleOpenModal();
     } else if (data.route === 'scores') {
@@ -33,15 +33,8 @@ const GridBox = ({ data }) => {
         height="100%"
         flexDirection="column"
       >
-        <Icon
-          as={data.icon}
-          boxSize={8}
-          color={data.color}
-        />
-        <Text
-          variant="cardText"
-          color={data.color}
-        >
+        <Icon as={data.icon} boxSize={8} color={data.color} />
+        <Text variant="cardText" color={data.color}>
           {data.name}
         </Text>
       </Flex>

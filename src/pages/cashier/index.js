@@ -23,13 +23,6 @@ const Index = () => {
   const tableTopInput = useMemo(
     () => [
       {
-        name: 'Agents',
-        label: '',
-        placeholder: 'Search...',
-        type: 'text',
-        float: false
-      },
-      {
         name: 'time',
         type: 'select',
         float: true,

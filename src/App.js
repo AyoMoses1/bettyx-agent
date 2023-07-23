@@ -87,7 +87,7 @@ const App = () => {
         return <Cashier />;
       case 'live-limits':
         return <LiveLimits />;
-      case 'new-customer':
+      case 'add-customer':
         return <NewCustomer />;
       case 'agents-performance':
         return <AgentPerformance />;
@@ -117,7 +117,7 @@ const App = () => {
         }}
       >
         <Layout setCurrentPage={setCurrentPage}>{renderPage()}</Layout>
-        {currentPage === 'feedback' ? <Feedback /> : <AddCustomer />}
+        {currentPage === 'feedback' && <Feedback />}
         <Scores />
       </CurrentPageContext.Provider>
     </ChakraProvider>
