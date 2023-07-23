@@ -132,12 +132,6 @@ export const pathObject = [
     color: 'green',
   },
   {
-    icon: RiBroadcastLine,
-    name: NavNames.liveLimits,
-    route: paths.liveLimits,
-    color: 'green',
-  },
-  {
     icon: FiHome,
     name: NavNames.agentPerformance,
     route: paths.agentPerformance,
@@ -168,39 +162,15 @@ export const pathObject = [
     color: 'turquoise',
   },
   {
-    icon: RiSettings2Line ,
-    name: NavNames.deletedWagers,
-    route: paths.deletedWagers,
-    color: 'turquoise',
-  },
-  {
-    icon: RiBookLine ,
-    name: NavNames.sportsbookLines,
-    route: paths.sportsbookLines,
-    color: 'turquoise',
-  },
-  {
     icon: FiHome,
     name: NavNames.betTicker,
     route: paths.betTicker,
     color: 'turquoise',
   },
   {
-    icon: RiTicketLine,
-    name: NavNames.ticketWriter,
-    route: paths.ticketWriter,
-    color: '#87CEEB',
-  },
-  {
     icon: RiFootballLine,
     name: NavNames.scores,
     route: paths.scores,
-    color: '#87CEEB',
-  },
-  {
-    icon: FiHome,
-    name: NavNames.agentAdmin,
-    route: paths.agentAdmin,
     color: '#87CEEB',
   },
   {
