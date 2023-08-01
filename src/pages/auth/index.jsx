@@ -9,8 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
-import bgImage from "assets/images/new-bg.jpeg"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import bgImage from "assets/images/new-bg.jpeg"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -62,13 +62,13 @@ const SignIn = () => {
       />
 
       <Box
-        p="8"
-        maxWidth="40vw"
+        p={{ base: "4", md: "8" }}
+        maxWidth={["100%", "90%", "60vw", "40vw"]}
         width="90%"
         position="relative"
         zIndex="1"
       >
-        <Text fontSize="xl" fontWeight="bold" mb="6" color="white">
+        <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" mb="6" color="white">
           Login into your account
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -82,35 +82,31 @@ const SignIn = () => {
               {...register("accountId")}
             />
             {errors?.accountId && (
-              <FormErrorMessage>Enter a valid players ID</FormErrorMessage>
+              <FormErrorMessage>Enter a valid player ID</FormErrorMessage>
             )}
           </FormControl>
           <FormControl id="password">
-          <InputGroup>
-            <Input
-              pr="4.5rem" // To accommodate the eye icon button
-              type={showPassword ? "text" : "password"}
-              placeholder="*****"
-              size="lg"
-              mb="6"
-              borderRadius="none"
-              focusBorderColor="purple.400"
-              {...register("password")}
-            />
-            <InputRightElement
-              width="4.5rem"
-              top="30%"
-              transform="translateY(-50%)"
-            >
-              <IconButton
-                h="1.75rem"
-                size="sm"
-                aria-label={showPassword ? "Hide password" : "Show password"}
-                icon={showPassword ? <FaEyeSlash /> : <FaEye />}
-                onClick={handleTogglePassword}
+            <InputGroup>
+              <Input
+                pr="4.5rem" // To accommodate the eye icon button
+                type={showPassword ? "text" : "password"}
+                placeholder="*****"
+                size="lg"
+                mb="6"
+                borderRadius="none"
+                focusBorderColor="purple.400"
+                {...register("password")}
               />
-            </InputRightElement>
-          </InputGroup>
+              <InputRightElement width="4.5rem" top="30%" transform="translateY(-50%)">
+                <IconButton
+                  h="1.75rem"
+                  size="sm"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+                  onClick={handleTogglePassword}
+                />
+              </InputRightElement>
+            </InputGroup>
             {errors?.password && (
               <FormErrorMessage>Password is required</FormErrorMessage>
             )}
