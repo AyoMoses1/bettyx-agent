@@ -1,10 +1,8 @@
 import {
   Box,
   Button,
-  ChakraProvider,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   Text,
 } from "@chakra-ui/react";

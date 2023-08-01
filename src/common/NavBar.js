@@ -5,11 +5,10 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Button,
   Spacer,
   Text,
 } from '@chakra-ui/react';
-import { FiSearch, FiLogOut } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 import {
   AiOutlineHome,
   AiOutlineMessage,
@@ -18,7 +17,7 @@ import {
   AiOutlineSetting,
 } from 'react-icons/ai';
 import { CurrentPageContext } from '../App';
-import { BiLogInCircle, BiPowerOff } from 'react-icons/bi';
+import { BiPowerOff } from 'react-icons/bi';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import paths from './Paths';
