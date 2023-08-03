@@ -28,6 +28,8 @@ import IPTracker from './pages/ip-tracker';
 import CustomerDetails from './pages/customers/CustomerDetails';
 import SignIn from './pages/auth';
 import Layout from './common/Layout';
+import { useEffect } from 'react';
+import { setupAuthAxios, setupPublicAxios } from 'setup/auth/axios';
 import './App.css';
 import { Navigate, useLocation, Routes, Route } from 'react-router-dom';
 import paths from './common/Paths';
@@ -38,6 +40,8 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [accessToken, setAccessToken] = useState('');
+
 
   const handleOpenDrawer = () => {
     setIsDrawerOpen(true);
@@ -52,6 +56,14 @@ const App = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    setupPublicAxios(process.env.REACT_APP_BASE_URL);
+    setupAuthAxios(process.env.REACT_APP_BASE_URL, accessToken);
+  }, [accessToken]);
+
+
+  console.log(accessToken, "accessToken")
 
   const renderPage = () => {
     switch (currentPage) {
@@ -110,6 +122,8 @@ const App = () => {
         value={{
           currentPage,
           setCurrentPage,
+          accessToken,
+          setAccessToken,
           isModalOpen,
           isDrawerOpen,
           handleCloseModal,

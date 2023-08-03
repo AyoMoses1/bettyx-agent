@@ -4,8 +4,10 @@ const endpoints = {
   projects: '/projects',
   clients: '/clients',
   tasks: '/tasks',
-  users: '/users',
-  timelogs: '/timelogs',
+  agentsWithPlayers: '/agent/allAgentsWithPlayers?sort=date',
+  agents: '/agent',
+  players: '/player',
+  agentPlayers: '/player/findPlayersByAgent'
 };
 
 export default endpoints;

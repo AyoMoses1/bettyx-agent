@@ -25,16 +25,18 @@ import paths from './Paths';
 const Navbar = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { setCurrentPage, setAccessToken } = useContext(CurrentPageContext);
+
 
   const handleLogout = () => {
     localStorage.removeItem('bet_token');
     localStorage.removeItem('accountId');
     queryClient.cancelQueries();
+    setAccessToken('')
     queryClient.clear();
     navigate(paths.login);
   };
 
-  const { setCurrentPage } = useContext(CurrentPageContext);
 
   return (
     <Box bg="gray.800" color="white" py={['2', '4']} h={['8vh', '12vh']}>

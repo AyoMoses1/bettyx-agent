@@ -9,7 +9,7 @@ import paths from 'common/Paths';
 export const useSignIn = () => {
   const toast = useToast();
   const navigate = useNavigate();
-  const { setCurrentPage } = useContext(CurrentPageContext);
+  const { setCurrentPage, setAccessToken } = useContext(CurrentPageContext);
 
   return useMutation(services.signin, {
     onError: (data) => {
@@ -26,6 +26,7 @@ export const useSignIn = () => {
     onSuccess: (data) => {
       localStorage.setItem('bet_token', data.data.token);
       localStorage.setItem('accountId', data.data.user.accountId);
+      setAccessToken(data.data.token)
       setCurrentPage(paths.home);
       navigate(paths.home);
     },

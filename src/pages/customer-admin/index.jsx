@@ -3,17 +3,21 @@ import { Flex, useDisclosure, Icon, Box, Button } from '@chakra-ui/react';
 import TableTop from '../../common/TableTop';
 import { FaCog, FaFileExcel } from 'react-icons/fa';
 import DynamicTable from '../../common/DynamicTable';
-import { data } from './helpers';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { CurrentPageContext } from '../../App';
 import Modal from '../../common/Modal';
 import EditForm from './components/EditForm';
+import { useGetAllPlayers, useGetAllAgentsWithPlayers } from './queryHooks';
 
 const Index = () => {
   const [topInputObj, setTopInputObj] = useState({ state: '', query: '' });
   const { setCurrentPage } = useContext(CurrentPageContext);
   const columnHelper = createColumnHelper();
+  const { data, isLoading } = useGetAllAgentsWithPlayers();
+
+  console.log(data);
+
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleInputChange = (name, value) => {
@@ -47,7 +51,7 @@ const Index = () => {
   );
 
   const columns = [
-    columnHelper.accessor('agent', {
+    columnHelper.accessor('agentId', {
       header: 'Agent',
       cell: (info) => {
         const value = info.getValue();
@@ -77,40 +81,75 @@ const Index = () => {
       header: 'Balance',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('pMaxBet', {
+    columnHelper.accessor('parlayMaxWager', {
       header: 'P. Max Bet',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('tMaxBet', {
+    columnHelper.accessor('teaserMaxWager', {
       header: 'T. Max Bet',
       cell: (info) => `$${info.getValue()}`,
     }),
-    columnHelper.accessor('status', {
+    columnHelper.accessor('accountStatus', {
       header: 'Status',
-      cell: (info) => info.getValue(),
+      cell: (info) => {
+        const value = info.getValue();
+        return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      },
     }),
-    columnHelper.accessor('sportsBook', {
+    columnHelper.accessor('sportbook', {
       header: 'Sports Book',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
+      },
     }),
     columnHelper.accessor('horses', {
       header: 'Horses',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
+      },
     }),
     columnHelper.accessor('casino', {
-      header: 'Status',
-      cell: (info) => (
-        <Box sx={{ width: '20px', height: '20px', bgColor: 'green' }}></Box>
-      ),
+      header: 'Casino',
+      cell: (info) => {
+        const value = info.getValue();
+        return (
+          <Box
+            sx={{
+              width: '20px',
+              height: '20px',
+              bgColor: value ? 'green' : 'red',
+            }}
+          ></Box>
+        );
+      },
     }),
     columnHelper.accessor('action', {
       header: '',
       cell: () => (
-        <Button bgColor="blue" color="white" onClick={() => onOpen()} size={['sm', 'md']}>
+        <Button
+          bgColor="blue"
+          color="white"
+          onClick={() => onOpen()}
+          size={['sm', 'md']}
+        >
           Edit
         </Button>
       ),
@@ -126,14 +165,20 @@ const Index = () => {
           title="Customer Admin"
         />
       </Flex>
-      <DynamicTable
-        totalCount={data?.length}
-        columns={columns}
-        data={data}
-        size="sm"
-        title="Customer Admin"
-      />
-      <Modal isOpen={isOpen} onClose={onClose} size={["md","6xl"]}>
+      <>
+        <Box bgColor="blue" color="white" my={8}>
+          {data.agent}
+        </Box>
+        <DynamicTable
+          totalCount={data?.players?.length}
+          columns={columns}
+          data={data.players || []}
+          size="sm"
+          title="Customer Admin"
+        />
+      </>
+
+      <Modal isOpen={isOpen} onClose={onClose} size={['md', '6xl']}>
         <EditForm onClose={onClose} />
       </Modal>
     </>

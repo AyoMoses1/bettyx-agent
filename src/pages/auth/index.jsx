@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useSignIn } from "./queryHooks";
 import { useState } from "react";
+import styled from 'styled-components'
 
 const schema = yup
   .object()
@@ -40,8 +41,7 @@ const SignIn = () => {
     mutate({ data });
   };
   return (
-    <Box
-      minH="100vh"
+    <StyledBox
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -76,6 +76,7 @@ const SignIn = () => {
               size="lg"
               mb="4"
               bgColor="transparent"
+              color="white"
               borderRadius="none"
               {...register("accountId")}
             />
@@ -122,8 +123,15 @@ const SignIn = () => {
           </Button>
         </form>
       </Box>
-    </Box>
+    </StyledBox>
   );
 };
 
 export default SignIn;
+
+
+const StyledBox = styled(Box)`
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh;
+`

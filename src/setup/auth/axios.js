@@ -25,7 +25,7 @@ export const setupAuthAxios = (baseUrl, authToken) => {
     baseURL: baseUrl,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${authToken}`,
+      'X-auth-token': `${authToken}`,
     },
   });
 };
