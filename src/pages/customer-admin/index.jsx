@@ -167,12 +167,12 @@ const Index = () => {
       </Flex>
       <>
         <Box bgColor="blue" color="white" my={8}>
-          {data.agent}
+          {data?.agent}
         </Box>
         <DynamicTable
           totalCount={data?.players?.length}
           columns={columns}
-          data={data.players || []}
+          data={data?.players || []}
           size="sm"
           title="Customer Admin"
         />
